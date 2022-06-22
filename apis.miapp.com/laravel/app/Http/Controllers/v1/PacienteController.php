@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use App\Models\v1\Paciente; 
 
-class PacienteController  extends Controller
+class PacienteController extends Controller
 {
     function getAll()
     {
@@ -57,7 +57,7 @@ class PacienteController  extends Controller
         $paciente = Paciente::find($request->id);
 
         if($paciente){
-           $paciente->apellido = $request->apellido;
+            $paciente->apellido = $request->apellido;
             $paciente->nombre = $request->nombre;
             $paciente->sexo = $request->sexo;
             $paciente->edad = $request->edad;
@@ -72,6 +72,7 @@ class PacienteController  extends Controller
             $paciente->alergias = $request->alergias;
             $paciente->intervencion_quirurgicas = $request->intervencion_quirurgicas;
             $paciente->vacunas = $request->vacunas;
+          
             $paciente->save();
             $response->success = true;
             $response->data = $paciente;
@@ -89,7 +90,7 @@ class PacienteController  extends Controller
         $response = new \stdClass();
         $paciente = Paciente::find($request->id);
 
-        if($producto){
+        if($paciente){
             if($request->apellido)
             $paciente->apellido = $request->apellido;
             if($request->nombre)
@@ -126,11 +127,12 @@ class PacienteController  extends Controller
         }
         else{
             $response->success = false;
-            $response->errors = ["el producto con el id ".$request->id." no existe"];
+            $response->errors = ["el paciente con el id ".$request->id." no existe"];
         }
 
         return response()->json($response, ($response->success?200:401));   
     }
+    
     function delete($id)
     {
         $response = new \stdClass();
