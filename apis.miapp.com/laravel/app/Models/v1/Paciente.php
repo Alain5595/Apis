@@ -4,17 +4,17 @@ namespace App\Models\v1;
  
 use Illuminate\Database\Eloquent\Model;
 use BinaryCabin\LaravelUUID\Traits\HasUUID;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Paciente extends Model
 {
     use HasUUID;
-
+    use SoftDeletes;
   
-    protected $table = 'paciente';
-    protected $primaryKey = 'dni';
+    protected $table = 'pacientes';
+    protected $primaryKey = 'id';
     protected $keyType = 'string';
-    protected $uuidFieldName = 'dni';
+    protected $uuidFieldName = 'id';
     
     
 }
